@@ -1,5 +1,4 @@
 import numpy as np
-import cv2
 import random
 
 class Particle():
@@ -13,7 +12,7 @@ class Particle():
         self.is_inside_frame = False
         self.image_shape = []
 
-    def intialize(self, image_shape):
+    def initialize(self, image_shape):
         self.image_shape = image_shape
         self.particles = np.random.rand(self.num_part, 3)
         self.particles[:, 0] = self.particles[:, 0] * image_shape[0]
@@ -28,9 +27,6 @@ class Particle():
             w = int(min(particle[1] + (self.bbox_size[1] / 2), mask_image.shape[1]))
             inside_particle = mask_image[y:h, x:w]
             num_of_ones = np.count_nonzero(inside_particle)
-            """if num_of_ones != 0:
-                cv2.imshow("Frame", inside_particle)
-                cv2.waitKey(0)"""
             particle[2] = num_of_ones/(self.bbox_size[0] * self.bbox_size[1])*100
         total_weight = np.sum(self.particles[:, 2])
         if total_weight != 0.:
@@ -86,6 +82,6 @@ class Particle():
                 particle[1] += movement[1]
             self.last_pos = self.current_estimation
         else:
-            self.intialize(self.image_shape)
+            self.initialize(self.image_shape)
 
 
