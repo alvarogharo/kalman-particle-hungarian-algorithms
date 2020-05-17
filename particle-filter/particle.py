@@ -21,10 +21,10 @@ class Particle():
 
     def evaluate(self, mask_image):
         for particle in self.particles:
-            y = int(max(particle[0]-(self.bbox_size[0]/2), 0))
-            h = int(min(particle[0]+(self.bbox_size[0]/2), mask_image.shape[0]))
-            x = int(max(particle[1] - (self.bbox_size[1] / 2), 0))
-            w = int(min(particle[1] + (self.bbox_size[1] / 2), mask_image.shape[1]))
+            y = int(min(mask_image.shape[0], max(particle[0]-(self.bbox_size[0]/2), 0)))
+            h = int(max(0, min(particle[0]+(self.bbox_size[0]/2), mask_image.shape[0])))
+            x = int(min(mask_image.shape[1], max(particle[1] - (self.bbox_size[1] / 2), 0)))
+            w = int(max(0, min(particle[1] + (self.bbox_size[1] / 2), mask_image.shape[1])))
             inside_particle = mask_image[y:h, x:w]
             num_of_ones = np.count_nonzero(inside_particle)
             particle[2] = num_of_ones/(self.bbox_size[0] * self.bbox_size[1])*100

@@ -3,7 +3,8 @@ The algorithm will create new random particles until the tracking object enters 
 in that moment the selection, evaluation, diffusion, etc wil take place.
 
 NOTE: With some random initialization the algorithm could get lost because of the diffusion or
-the prediction not updating right.
+the prediction not updating to the desired position. If this happens, it should generate a new random initialization and find again the
+object automatically.
 
 Working example (click image to play):
 
