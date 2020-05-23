@@ -2,15 +2,6 @@ import numpy as np
 
 class Kalman():
     def init(self, dt, u, std_acc, std_pos, X_init=np.zeros((4,1)), P_init=np.eye(4)):
-        """
-        :param dt: time between iterations
-        :param u: acceleration
-        :param std_acc: noise magnitude
-        :param std_pos: standard deviation of the measurement position
-        :param X_init: initial position
-        :param P_init: initial covariance matrix
-
-        """
         self.dt = dt
         self.u = np.ones((2, 1)) * u
         self.x = X_init

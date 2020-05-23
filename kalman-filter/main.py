@@ -8,7 +8,7 @@ measurements_path = "./measurements/ball_20.csv"
 
 
 dt = 0.1
-u = 0
+u = 0 # Acceleration
 std_acc = 0.001  # Q
 std_pos = 0.5 # R
 
